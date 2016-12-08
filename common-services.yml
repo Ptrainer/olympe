@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  website-base:
+    build:
+      context: website/
+      args:
+        USER: ${USER}
+        UID: ${UID}
+    volumes:
+      - './website/ptrainer-website:/ptrainer-website'
+      # X forwarding
+      - '/tmp/.X11-unix:/tmp/.X11-unix'
+    environment:
+      POSTGRES_USER: website
+      POSTGRES_PASSWORD: website_pass
+      REDISCLOUD_URL: 'redis://redis:6379'
+      REDIS_URL: 'redis://redis:6379'
+      # X forwarding
+      DISPLAY: ${DISPLAY}
+    user: ${USER}

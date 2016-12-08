@@ -1,0 +1,1 @@
+ENV['AM_MODE']                    = 'test'
